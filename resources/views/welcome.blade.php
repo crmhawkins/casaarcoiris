@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.css">
 <style>
 :root{
   --bg:#ffffff; --panel:#eef6f5; --panel2:#f6f1e9;
@@ -211,6 +212,17 @@ footer.site .right{text-align:right}
 .lightbox .lb-next{right:16px;top:50%;transform:translateY(-50%)}
 .lightbox .lb-cap{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#eafaf9;font-size:.82rem;opacity:.85}
 @media(max-width:560px){.lightbox .lb-prev,.lightbox .lb-next{width:40px;height:40px}}
+
+/* calendario (flatpickr) con la paleta costera */
+.flatpickr-calendar{font-family:inherit;box-shadow:0 20px 60px -20px rgba(8,30,35,.4);border-radius:14px}
+.flatpickr-day.selected,.flatpickr-day.startRange,.flatpickr-day.endRange,.flatpickr-day.selected.inRange,.flatpickr-day.startRange.inRange,.flatpickr-day.endRange.inRange{background:var(--sea);border-color:var(--sea)}
+.flatpickr-day.selected:hover,.flatpickr-day.startRange:hover,.flatpickr-day.endRange:hover{background:var(--sea-deep);border-color:var(--sea-deep)}
+.flatpickr-day.inRange{background:#e2f2f1;border-color:#e2f2f1;box-shadow:-5px 0 0 #e2f2f1,5px 0 0 #e2f2f1}
+.flatpickr-day.today{border-color:var(--sun)}
+.flatpickr-day.today:hover{background:var(--sun);border-color:var(--sun);color:#fff}
+.flatpickr-months .flatpickr-month,.flatpickr-current-month input.cur-year,.flatpickr-weekday{color:var(--ink);fill:var(--ink)}
+span.flatpickr-weekday{color:var(--muted)}
+.flatpickr-months .flatpickr-prev-month:hover svg,.flatpickr-months .flatpickr-next-month:hover svg{fill:var(--sea)}
 
 @media (prefers-reduced-motion: reduce){
   *{animation:none!important;transition:none!important}
@@ -441,7 +453,7 @@ footer.site .right{text-align:right}
         <form class="cf" id="reservaForm" novalidate>
           <input type="text" name="nombre" placeholder="Tu nombre" required>
           <input type="email" name="email" placeholder="Tu email" required>
-          <input type="text" name="fechas" placeholder="Fechas aproximadas (entrada – salida)">
+          <input type="text" name="fechas" id="reserva-fechas" placeholder="Fechas (entrada – salida)" autocomplete="off">
           <input type="text" name="personas" placeholder="Nº de personas">
           <textarea name="mensaje" rows="3" placeholder="Cuéntanos qué necesitas"></textarea>
           <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -493,6 +505,8 @@ footer.site .right{text-align:right}
   <div class="lb-cap" id="lbCap"></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/flatpickr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.13/l10n/es.min.js"></script>
 <script>
 /* ---- HERO: vídeo guiado por scroll ---- */
 (function(){
@@ -538,14 +552,27 @@ function waLink(fechas,personas){
 }
 function updateWa(f,p){var b=document.getElementById('waBtn');if(b)b.href=waLink(f,p);}
 
-/* ---- Hero "Ver disponibilidad": prellena la solicitud y baja a contacto ---- */
+/* ---- Calendario de reserva (flatpickr, rango entrada–salida, todas las fechas abiertas) ---- */
+var heroFP=null, reservaFP=null;
+(function(){
+  if(!window.flatpickr) return; // si el CDN no carga, quedan como campos de texto
+  try{ if(flatpickr.l10ns && flatpickr.l10ns.es) flatpickr.localize(flatpickr.l10ns.es); }catch(e){}
+  var common={mode:'range',minDate:'today',dateFormat:'d/m/Y',locale:'es',rangeSeparator:' a ',disableMobile:true,showMonths:(window.innerWidth>760?2:1)};
+  var h=document.getElementById('bk-date'); if(h) heroFP=flatpickr(h, common);
+  var r=document.getElementById('reserva-fechas'); if(r) reservaFP=flatpickr(r, common);
+})();
+
+/* ---- Hero "Ver disponibilidad": lleva las fechas a la solicitud y baja a contacto ---- */
 document.getElementById('book').addEventListener('submit',function(e){
   e.preventDefault();
-  var d=document.getElementById('bk-date').value, g=document.getElementById('bk-guests').value;
+  var g=document.getElementById('bk-guests').value;
   var rf=document.getElementById('reservaForm');
-  if(d) rf.fechas.value=d;
+  var fechasStr=document.getElementById('bk-date').value;
+  var dates=heroFP?heroFP.selectedDates:[];
+  if(dates&&dates.length&&reservaFP){ reservaFP.setDate(dates,true); }
+  else if(fechasStr){ rf.fechas.value=fechasStr; }
   if(g) rf.personas.value=g;
-  updateWa(d,g);
+  updateWa(fechasStr,g);
   document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
   setTimeout(function(){try{rf.nombre.focus();}catch(_){}} ,650);
 });
