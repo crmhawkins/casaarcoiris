@@ -12,8 +12,8 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        // El chat de Iris es un endpoint público (página cacheable, sin sesión).
-        $middleware->validateCsrfTokens(except: ['iris/chat']);
+        // Endpoints públicos (página cacheable, sin sesión): chat y reserva.
+        $middleware->validateCsrfTokens(except: ['iris/chat', 'reserva']);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(

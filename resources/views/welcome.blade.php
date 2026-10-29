@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Casa Arco Iris · Hostal en Los Caños de Meca (Cádiz)</title>
 <meta name="description" content="Hostal Casa Arco Iris: alojamiento familiar en Los Caños de Meca, a 50 m de la playa, con piscina, jardín y terrazas. 11 habitaciones con baño privado. 4,7★ en Google.">
-<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/img/logo/logo-arbol.svg">
 <meta property="og:title" content="Casa Arco Iris · Hostal en Los Caños de Meca">
 <meta property="og:description" content="Hostal familiar entre el Parque Natural de La Breña y el mar. Piscina, jardín, terrazas y las mejores puestas de sol de la Costa de la Luz.">
 <meta property="og:type" content="website">
-<meta property="og:image" content="/img/hero/hero.jpg">
+<meta property="og:image" content="/img/hero/hero-poster.jpg">
 <meta name="theme-color" content="#0a5a63">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,6 +24,7 @@
   --maxw:1120px; color-scheme:light;
 }
 *{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"Figtree",system-ui,-apple-system,Segoe UI,Roboto,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3{font-family:"Fraunces","Georgia",serif;font-weight:600;line-height:1.08;text-wrap:balance;margin:0}
 p{margin:0}
@@ -35,30 +36,36 @@ img{display:block;max-width:100%}
 .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px -12px rgba(239,111,83,.7)}
 .btn.ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line)}
 .btn.ghost:hover{border-color:var(--sea);color:var(--sea-deep);box-shadow:none}
-.rainbow{height:4px;border-radius:9px;background:linear-gradient(90deg,#ef6f53,#edb24a,#4fb477,#0e9195,#5a7fd6,#8a6fd0)}
+.btn.wa{background:#25D366;color:#fff}
+.btn.wa:hover{box-shadow:0 12px 26px -12px rgba(37,211,102,.7)}
+.btn svg{width:1.1em;height:1.1em}
 
 .demo-strip{background:linear-gradient(90deg,var(--sea-deep),var(--sea));color:#eafaf9;font-size:.82rem;text-align:center;padding:7px 16px;font-weight:500}
 .demo-strip b{color:#fff}
 
-header.site{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.nav{display:flex;align-items:center;gap:18px;height:68px}
-.brand{display:flex;align-items:center;gap:11px;font-family:"Fraunces",serif;font-weight:600;font-size:1.25rem;text-decoration:none;color:var(--ink)}
-.brand .mark{width:34px;height:34px;border-radius:50%;background:conic-gradient(from 200deg,#ef6f53,#edb24a,#4fb477,#0e9195,#5a7fd6,#ef6f53);flex:0 0 auto;box-shadow:inset 0 0 0 3px #fff}
+header.site{position:sticky;top:0;z-index:40;background:rgba(10,52,57,.80);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.14)}
+.nav{display:flex;align-items:center;gap:18px;height:74px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none}
+.brand .logo{height:54px;width:auto;display:block}
 .nav .links{display:flex;gap:22px;margin-left:auto;font-weight:500;font-size:.95rem}
-.nav .links a{text-decoration:none;color:var(--ink);opacity:.82;transition:opacity .15s,color .15s}
-.nav .links a:hover{opacity:1;color:var(--sea-deep)}
+.nav .links a{text-decoration:none;color:#fff;opacity:.85;transition:opacity .15s,color .15s}
+.nav .links a:hover{opacity:1;color:#fff}
 .nav .cta{margin-left:6px}
-@media(max-width:900px){.nav .links{display:none}.nav .cta{margin-left:auto}}
+@media(max-width:900px){.nav .links{display:none}.nav .cta{margin-left:auto}.brand .logo{height:46px}}
 
-.hero{position:relative;min-height:84vh;display:flex;align-items:flex-end;overflow:clip;isolation:isolate}
-.hero .bg{position:absolute;inset:-8% 0;z-index:-2;will-change:transform}
-.hero .bg img{width:100%;height:100%;object-fit:cover}
-.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,44,51,.15) 0%,rgba(10,44,51,0) 30%,rgba(8,40,47,.62) 100%)}
-.hero .wrap{width:100%;padding-top:70px;padding-bottom:40px}
-.hero h1{color:#fff;font-size:clamp(2.5rem,6.4vw,5rem);font-weight:600;letter-spacing:-.01em;text-shadow:0 2px 30px rgba(8,30,35,.35)}
-.hero .sub{color:#eef6f5;max-width:36ch;margin-top:16px;font-size:clamp(1.05rem,2vw,1.3rem);text-shadow:0 1px 12px rgba(8,30,35,.4)}
-.hero .loc{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:600;letter-spacing:.02em;margin-bottom:14px;font-size:.95rem}
+/* hero con VÍDEO guiado por scroll */
+.hero{position:relative;height:200vh}
+.hero-sticky{position:sticky;top:0;height:100vh;min-height:560px;overflow:hidden;display:flex;align-items:flex-end;isolation:isolate}
+.hero-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;background:#0a2c33}
+.hero-sticky::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,44,51,.20) 0%,rgba(10,44,51,0) 26%,rgba(8,40,47,.68) 100%)}
+.hero-content{width:100%;padding-top:70px;padding-bottom:44px}
+.hero h1{color:#fff;font-size:clamp(2.5rem,6.4vw,5rem);font-weight:600;letter-spacing:-.01em;text-shadow:0 2px 30px rgba(8,30,35,.4)}
+.hero .sub{color:#eef6f5;max-width:36ch;margin-top:16px;font-size:clamp(1.05rem,2vw,1.3rem);text-shadow:0 1px 12px rgba(8,30,35,.45)}
+.hero .loc{display:inline-flex;align-items:center;gap:8px;color:#fff;font-weight:600;letter-spacing:.02em;margin-bottom:14px;font-size:.95rem;text-shadow:0 1px 10px rgba(8,30,35,.5)}
 .hero .loc .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(237,178,74,.3)}
+.scroll-cue{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);z-index:2;color:#fff;opacity:.85;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bob 2s ease-in-out infinite}
+.scroll-cue svg{width:20px;height:20px}
+@keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,6px)}}
 
 .book{margin-top:28px;background:rgba(255,255,255,.95);border-radius:18px;box-shadow:var(--shadow);padding:14px;display:grid;grid-template-columns:1.2fr 1fr auto;gap:12px;max-width:640px}
 .book .f{display:flex;flex-direction:column;gap:3px;padding:6px 12px;border-radius:12px;background:var(--panel)}
@@ -67,14 +74,14 @@ header.site{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.82);ba
 .book .btn{justify-content:center;width:100%;height:100%}
 @media(max-width:620px){.book{grid-template-columns:1fr 1fr;max-width:none}.book .btn{grid-column:1/-1}}
 
-.stats{background:var(--sea-deep);color:#eafaf9}
+.stats{background:var(--sea-deep);color:#eafaf9;position:relative;z-index:1}
 .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;padding-block:30px;text-align:center}
 .stats .n{font-family:"Fraunces",serif;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:600;color:#fff;line-height:1}
 .stats .l{font-size:.86rem;opacity:.85;margin-top:6px}
 .stats .star{color:var(--gold)}
 @media(max-width:620px){.stats .wrap{grid-template-columns:repeat(2,1fr);gap:22px}}
 
-section{padding-block:clamp(56px,8vw,92px)}
+section:not(.hero){padding-block:clamp(56px,8vw,92px)}
 .section-head{max-width:62ch}
 .section-head h2{font-size:clamp(1.9rem,4.4vw,3rem);margin-top:12px}
 .section-head p.lead{color:var(--muted);font-size:1.12rem;margin-top:14px}
@@ -105,7 +112,6 @@ section{padding-block:clamp(56px,8vw,92px)}
 @media(max-width:860px){.room-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.room-grid{grid-template-columns:1fr}}
 
-/* galerías */
 .gallery-wrap{margin-top:36px}
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
 .gallery figure{margin:0;overflow:hidden;border-radius:14px;cursor:zoom-in;background:var(--panel);box-shadow:0 10px 30px -24px rgba(12,54,61,.6)}
@@ -148,19 +154,25 @@ section{padding-block:clamp(56px,8vw,92px)}
 .contact .row{display:flex;align-items:center;gap:12px;margin-top:16px;font-size:1.05rem;color:var(--ink)}
 .contact .row svg{width:22px;height:22px;color:var(--sun);flex:0 0 auto}
 .contact .row b{font-weight:600}
+.cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .contact .map{margin-top:22px;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);border:1px solid var(--line)}
 .contact .map iframe{display:block;width:100%;height:220px;border:0}
 form.cf{display:grid;gap:12px;background:#fff;border-radius:18px;padding:22px;box-shadow:var(--shadow);align-content:start}
 form.cf input,form.cf textarea{font-family:inherit;font-size:1rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);outline:none;transition:border-color .15s}
 form.cf input:focus,form.cf textarea:focus{border-color:var(--sea)}
 form.cf .ok{display:none;background:#e6f5ee;color:#176a45;border-radius:12px;padding:12px 14px;font-weight:500}
+form.cf .err{display:none;background:#fdecea;color:#b4231a;border-radius:12px;padding:12px 14px;font-weight:500}
+.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
 @media(max-width:820px){.contact .grid{grid-template-columns:1fr}}
 
 footer.site{background:var(--sea-deep);color:#cfe7e6;padding-block:40px;font-size:.92rem}
-footer.site .grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:center}
+footer.site .grid{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center}
+footer.site .flogo{height:74px;width:auto;display:block}
 footer.site a{color:#fff;font-weight:600;text-decoration:none}
 footer.site a:hover{text-decoration:underline}
-footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
+footer.site .reg{opacity:.75;font-size:.82rem;margin-top:10px}
+footer.site .right{text-align:right}
+@media(max-width:620px){footer.site .right{text-align:left}}
 
 .chat-fab{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:max(18px,env(safe-area-inset-bottom,0px));z-index:60;display:flex;align-items:center;gap:10px;background:var(--sun);color:#fff;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:.98rem;padding:13px 18px;border-radius:999px;box-shadow:0 16px 40px -16px rgba(239,111,83,.8)}
 .chat-fab:hover{transform:translateY(-2px)}
@@ -168,7 +180,7 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 .chat-panel{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(74px + env(safe-area-inset-bottom,0px));z-index:61;width:min(380px,calc(100vw - 32px));height:min(560px,calc(100vh - 120px));background:#fff;border-radius:20px;box-shadow:0 30px 70px -20px rgba(8,30,35,.55);display:flex;flex-direction:column;overflow:hidden;border:1px solid var(--line)}
 .chat-panel[hidden]{display:none}
 .chat-head{background:var(--sea-deep);color:#fff;padding:15px 18px;display:flex;align-items:center;gap:11px}
-.chat-head .mark{width:34px;height:34px;border-radius:50%;background:conic-gradient(from 200deg,#ef6f53,#edb24a,#4fb477,#0e9195,#5a7fd6,#ef6f53);box-shadow:inset 0 0 0 3px var(--sea-deep)}
+.chat-head .mark{width:36px;height:36px;border-radius:50%;background:#fff;padding:3px;box-shadow:0 2px 8px rgba(0,0,0,.2)}
 .chat-head b{display:block;font-size:1rem}
 .chat-head span{font-size:.78rem;opacity:.8}
 .chat-head .x{margin-left:auto;background:transparent;border:0;color:#fff;font-size:1.3rem;cursor:pointer;opacity:.8}
@@ -184,7 +196,6 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 .chat-input input:focus{border-color:var(--sea)}
 .chat-input button{background:var(--sun);border:0;color:#fff;width:42px;height:42px;border-radius:50%;cursor:pointer;flex:0 0 auto;display:grid;place-items:center}
 .chat-input button svg{width:18px;height:18px}
-.hp{position:absolute;left:-9999px;opacity:0;height:0;width:0}
 .typing{display:inline-flex;gap:4px;align-items:center}
 .typing i{width:7px;height:7px;border-radius:50%;background:var(--muted);opacity:.5;animation:bl 1s infinite}
 .typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
@@ -201,7 +212,12 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 .lightbox .lb-cap{position:absolute;bottom:16px;left:0;right:0;text-align:center;color:#eafaf9;font-size:.82rem;opacity:.85}
 @media(max-width:560px){.lightbox .lb-prev,.lightbox .lb-next{width:40px;height:40px}}
 
-@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.hero .bg,.entorno .bg{transform:none!important}}
+@media (prefers-reduced-motion: reduce){
+  *{animation:none!important;transition:none!important}
+  .entorno .bg{transform:none!important}
+  .hero{height:auto}
+  .hero-sticky{position:relative;height:84vh}
+}
 </style>
 </head>
 <body>
@@ -210,7 +226,7 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 
 <header class="site">
   <div class="wrap nav">
-    <a class="brand" href="#top"><span class="mark"></span>Casa Arco Iris</a>
+    <a class="brand" href="#top" aria-label="Casa Arco Iris"><img class="logo" src="/img/logo/logo.svg" alt="Casa Arco Iris"></a>
     <nav class="links">
       <a href="#hostal">El hostal</a>
       <a href="#habitaciones">Habitaciones</a>
@@ -224,20 +240,23 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 
 <main id="top">
   <section class="hero" id="hero">
-    <div class="bg" id="heroBg"><img src="/img/hero/hero.jpg" alt="Casa Arco Iris al atardecer: piscina, palmeras y vistas al faro de Trafalgar" fetchpriority="high"></div>
-    <div class="wrap">
-      <span class="loc"><span class="dot"></span>Los Caños de Meca · Cádiz · a 50 m de la playa</span>
-      <h1>Donde el campo,<br>el parque y el mar<br>se dan la mano.</h1>
-      <p class="sub">Un hostal familiar y acogedor en primera línea de naturaleza, con piscina, terrazas y las mejores puestas de sol de la Costa de la Luz.</p>
-      <form class="book" id="book">
-        <div class="f"><label>Entrada – Salida</label><input type="text" placeholder="Añade tus fechas" id="bk-date"></div>
-        <div class="f"><label>Huéspedes</label><select><option>2 adultos</option><option>1 adulto</option><option>2 adultos + 1 niño</option><option>Familia (4)</option></select></div>
-        <button class="btn" type="submit">Ver disponibilidad</button>
-      </form>
+    <div class="hero-sticky">
+      <video class="hero-video" id="heroVideo" src="/img/hero/hero.mp4" poster="/img/hero/hero-poster.jpg" muted playsinline preload="auto" aria-hidden="true"></video>
+      <div class="wrap hero-content">
+        <span class="loc"><span class="dot"></span>Los Caños de Meca · Cádiz · a 50 m de la playa</span>
+        <h1>Donde el campo,<br>el parque y el mar<br>se dan la mano.</h1>
+        <p class="sub">Un hostal familiar y acogedor en primera línea de naturaleza, con piscina, terrazas y las mejores puestas de sol de la Costa de la Luz.</p>
+        <form class="book" id="book">
+          <div class="f"><label>Entrada – Salida</label><input type="text" placeholder="Añade tus fechas" id="bk-date" autocomplete="off"></div>
+          <div class="f"><label>Huéspedes</label><select id="bk-guests"><option>2 adultos</option><option>1 adulto</option><option>2 adultos + 1 niño</option><option>Familia (4)</option></select></div>
+          <button class="btn" type="submit">Ver disponibilidad</button>
+        </form>
+      </div>
+      <div class="scroll-cue" aria-hidden="true">Desliza<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></div>
     </div>
   </section>
 
-  <section class="stats" style="padding:0">
+  <section class="stats">
     <div class="wrap">
       <div><div class="n">11</div><div class="l">habitaciones con baño</div></div>
       <div><div class="n">50 m</div><div class="l">hasta la playa</div></div>
@@ -410,18 +429,25 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
         <div class="info">
           <span class="eyebrow">Contacto y reservas</span>
           <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);margin-top:12px">¿Hablamos de tu escapada?</h2>
-          <p>Escríbenos o llámanos y te ayudamos con las fechas, las habitaciones y todo lo que necesites saber de la zona.</p>
-          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h5l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v5a2 2 0 0 1-2 2A18 18 0 0 1 2 6a2 2 0 0 1 2-2"/></svg><a href="tel:+34659904200"><b id="tel">+34 659 904 200</b></a></div>
+          <p>Escríbenos o llámanos y te ayudamos con las fechas, las habitaciones y todo lo que necesites saber de la zona. Te respondemos lo antes posible.</p>
+          <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h5l2 5-3 2a12 12 0 0 0 5 5l2-3 5 2v5a2 2 0 0 1-2 2A18 18 0 0 1 2 6a2 2 0 0 1 2-2"/></svg><a href="tel:+34659904200"><b>+34 659 904 200</b></a></div>
           <div class="row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Avda. de Trafalgar, Calle Hibisco s/n · 11159 Los Caños de Meca (Barbate), Cádiz</span></div>
+          <div class="cta-row">
+            <a class="btn wa" id="waBtn" href="https://wa.me/34659904200?text=Hola%2C%20quiero%20consultar%20disponibilidad%20en%20Casa%20Arco%20Iris" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.7-.8-1.9-.9-.3-.1-.5-.2-.7.1-.2.3-.7.9-.9 1.1-.2.2-.3.2-.6.1-1.6-.8-2.6-1.4-3.7-3.2-.3-.5.3-.5.8-1.5.1-.2 0-.4 0-.5 0-.1-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1.1 2.8 1.2 3c.1.2 2.1 3.3 5.2 4.6 1.9.8 2.6.9 3.6.8.6-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2z"/></svg>Reservar por WhatsApp</a>
+            <a class="btn ghost" href="tel:+34659904200">Llamar</a>
+          </div>
           <div class="map"><iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Hostal%20Casa%20Arco%20Iris%20Los%20Ca%C3%B1os%20de%20Meca&output=embed" title="Mapa de Casa Arco Iris"></iframe></div>
         </div>
-        <form class="cf" id="cf">
-          <input type="text" placeholder="Tu nombre" required>
-          <input type="email" placeholder="Tu email" required>
-          <input type="text" placeholder="Fechas aproximadas / nº de personas">
-          <textarea rows="3" placeholder="Cuéntanos qué necesitas"></textarea>
+        <form class="cf" id="reservaForm" novalidate>
+          <input type="text" name="nombre" placeholder="Tu nombre" required>
+          <input type="email" name="email" placeholder="Tu email" required>
+          <input type="text" name="fechas" placeholder="Fechas aproximadas (entrada – salida)">
+          <input type="text" name="personas" placeholder="Nº de personas">
+          <textarea name="mensaje" rows="3" placeholder="Cuéntanos qué necesitas"></textarea>
+          <input class="hp" type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
           <button class="btn" type="submit">Enviar solicitud</button>
-          <div class="ok" id="cfok">¡Gracias! En la web real esta solicitud os llegaría al instante. &#127752;</div>
+          <div class="ok" id="reservaOk"></div>
+          <div class="err" id="reservaErr"></div>
         </form>
       </div>
     </div>
@@ -431,10 +457,10 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 <footer class="site">
   <div class="wrap grid">
     <div>
-      <div style="font-family:Fraunces,serif;font-size:1.25rem;color:#fff">Casa Arco Iris</div>
+      <img class="flogo" src="/img/logo/logo-footer.svg" alt="Casa Arco Iris">
       <div class="reg">Hostal · Inscrito en el Registro de Turismo de Andalucía H/CA701432</div>
     </div>
-    <div>Diseño y desarrollo web: <a href="https://hawkins.es" target="_blank" rel="noopener">Hawkins</a></div>
+    <div class="right">Diseño y desarrollo web: <a href="https://hawkins.es" target="_blank" rel="noopener">Hawkins</a></div>
   </div>
 </footer>
 
@@ -444,7 +470,7 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 </button>
 
 <div class="chat-panel" id="chatPanel" hidden>
-  <div class="chat-head"><span class="mark"></span><div><b>Iris</b><span>Asistente virtual · IA</span></div><button class="x" id="chatX" aria-label="Cerrar">&times;</button></div>
+  <div class="chat-head"><img class="mark" src="/img/logo/logo-arbol.svg" alt=""><div><b>Iris</b><span>Asistente virtual · IA</span></div><button class="x" id="chatX" aria-label="Cerrar">&times;</button></div>
   <div class="chat-body" id="chatBody"></div>
   <div class="chips" id="chips">
     <button>¿Dónde estáis?</button>
@@ -468,26 +494,85 @@ footer.site .reg{opacity:.7;font-size:.82rem;margin-top:8px}
 </div>
 
 <script>
-/* ---- parallax hero + entorno ---- */
+/* ---- HERO: vídeo guiado por scroll ---- */
 (function(){
-  var hero=document.getElementById('heroBg'), ent=document.getElementById('entBg');
-  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(reduce) return;
+  var hero=document.getElementById('hero'), v=document.getElementById('heroVideo');
+  if(!hero||!v) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){ return; }
+  var ready=false, dur=5;
+  function markReady(){ dur=v.duration||5; ready=true; update(); }
+  if(v.readyState>=1) markReady();
+  v.addEventListener('loadedmetadata', markReady);
+  // Forzar buffering (muted autoplay permitido): play + pause para que el seek funcione.
+  var kick=function(){ v.play().then(function(){ v.pause(); }).catch(function(){}); };
+  kick(); addEventListener('touchstart', kick, {once:true, passive:true});
   var tick=false;
-  function f(){
+  function update(){
     tick=false;
-    var y=window.scrollY||window.pageYOffset;
-    if(hero) hero.style.transform='translate3d(0,'+(y*0.28)+'px,0) scale(1.06)';
-    var e=document.getElementById('entorno');
-    if(ent&&e){var r=e.getBoundingClientRect();ent.style.transform='translate3d(0,'+(r.top*-0.12)+'px,0) scale(1.08)';}
+    if(!ready) return;
+    var track=hero.offsetHeight-window.innerHeight;
+    var scrolled=Math.min(Math.max(-hero.getBoundingClientRect().top,0),track);
+    var p=track>0?scrolled/track:0;
+    try{ v.currentTime=p*(dur-0.05); }catch(e){}
   }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
+  addEventListener('resize',function(){if(!tick){tick=true;requestAnimationFrame(update);}},{passive:true});
+})();
+
+/* ---- parallax de la sección Entorno ---- */
+(function(){
+  var ent=document.getElementById('entBg');
+  if(!ent || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var tick=false;
+  function f(){tick=false;var e=document.getElementById('entorno');if(ent&&e){var r=e.getBoundingClientRect();ent.style.transform='translate3d(0,'+(r.top*-0.12)+'px,0) scale(1.08)';}}
   addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(f);}},{passive:true});
   f();
 })();
 
-/* ---- demo: booking + form no envían de verdad ---- */
-document.getElementById('book').addEventListener('submit',function(e){e.preventDefault();openChat();send('Quiero ver disponibilidad y reservar, ¿cómo lo hago?');});
-document.getElementById('cf').addEventListener('submit',function(e){e.preventDefault();document.getElementById('cfok').style.display='block';e.target.querySelector('button').textContent='Enviado ✓';});
+/* ---- WhatsApp: enlace al teléfono real del hostal con mensaje ---- */
+function waLink(fechas,personas){
+  var t='Hola, quiero consultar disponibilidad en Casa Arco Iris';
+  if(fechas) t+='. Fechas: '+fechas;
+  if(personas) t+='. Personas: '+personas;
+  return 'https://wa.me/34659904200?text='+encodeURIComponent(t);
+}
+function updateWa(f,p){var b=document.getElementById('waBtn');if(b)b.href=waLink(f,p);}
+
+/* ---- Hero "Ver disponibilidad": prellena la solicitud y baja a contacto ---- */
+document.getElementById('book').addEventListener('submit',function(e){
+  e.preventDefault();
+  var d=document.getElementById('bk-date').value, g=document.getElementById('bk-guests').value;
+  var rf=document.getElementById('reservaForm');
+  if(d) rf.fechas.value=d;
+  if(g) rf.personas.value=g;
+  updateWa(d,g);
+  document.getElementById('contacto').scrollIntoView({behavior:'smooth'});
+  setTimeout(function(){try{rf.nombre.focus();}catch(_){}} ,650);
+});
+
+/* ---- Solicitud de reserva: envío REAL al backend /reserva ---- */
+document.getElementById('reservaForm').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var f=e.target, btn=f.querySelector('button[type=submit]');
+  var ok=document.getElementById('reservaOk'), err=document.getElementById('reservaErr');
+  ok.style.display='none'; err.style.display='none';
+  var old=btn.textContent; btn.disabled=true; btn.textContent='Enviando…';
+  try{
+    var payload={nombre:f.nombre.value,email:f.email.value,fechas:f.fechas.value,personas:f.personas.value,mensaje:f.mensaje.value,website:f.website.value};
+    var res=await fetch('/reserva',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+    var j={}; try{ j=await res.json(); }catch(_){}
+    if(res.ok && j.ok){
+      ok.textContent=j.message||'¡Gracias! Hemos recibido tu solicitud y te contestaremos muy pronto. 🌈';
+      ok.style.display='block'; f.reset(); btn.textContent='Enviado ✓';
+    }else{
+      err.textContent=(j&&j.message)||'Revisa los datos e inténtalo de nuevo, por favor.';
+      err.style.display='block'; btn.disabled=false; btn.textContent=old;
+    }
+  }catch(_){
+    err.textContent='No se pudo enviar ahora. Llámanos o escríbenos por WhatsApp al +34 659 904 200.';
+    err.style.display='block'; btn.disabled=false; btn.textContent=old;
+  }
+});
 
 /* ---- lightbox de galerías ---- */
 (function(){
@@ -502,10 +587,7 @@ document.getElementById('cf').addEventListener('submit',function(e){e.preventDef
     lb.classList.add('open');lb.setAttribute('aria-hidden','false');
   }
   function close(){lb.classList.remove('open');lb.setAttribute('aria-hidden','true');img.src='';}
-  document.addEventListener('click',function(e){
-    var it=e.target.closest('.lb-item');
-    if(it){var im=it.querySelector('img')||it;open(im);return;}
-  });
+  document.addEventListener('click',function(e){var it=e.target.closest('.lb-item');if(it){var im=it.querySelector('img')||it;open(im);}});
   document.getElementById('lbClose').addEventListener('click',close);
   document.getElementById('lbPrev').addEventListener('click',function(){show(idx-1);});
   document.getElementById('lbNext').addEventListener('click',function(){show(idx+1);});
